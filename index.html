@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FOR JEFFORD</title>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffeaea, #fff);
+  font-family: Georgia, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 💖 floating hearts */
+.heart-float {
+  position: fixed;
+  bottom: -20px;
+  font-size: 16px;
+  color: #ff7a8a;
+  animation: floatUp linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* 💌 envelope container */
+.envelope {
+  position: relative;
+  width: 260px;
+  height: 170px;
+  cursor: pointer;
+}
+
+/* base */
+.base {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* ✉️ flap (TOP TRIANGLE) */
+.flap {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top: 90px solid #ffdada;
+  transform-origin: top center;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+/* ❤️ heart on flap */
+.flap .heart {
+  position: absolute;
+  top: -70px;
+  left: -10px;
+  font-size: 22px;
+  color: #ff4d6d;
+}
+
+/* bottom triangle (envelope fold look) */
+.bottom {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-bottom: 90px solid #ffe5e5;
+}
+
+/* open animation */
+.open .flap {
+  transform: rotateX(180deg);
+}
+
+/* hide */
+.hide {
+  opacity: 0;
+  transition: 1s;
+}
+
+/* 💖 letter */
+.letter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: none;
+  overflow-y: auto;
+  padding: 40px 20px;
+  text-align: center;
+
+  box-sizing: border-box; /* ⭐ IMPORTANT */
+}
+
+.show {
+  display: block;
+}
+
+h1 { color: #b85c5c; }
+
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 600px;   /* keeps text readable */
+  margin: auto;       /* centers it */
+  word-wrap: break-word;
+}
+
+img {
+  width: 90%;
+  max-width: 450px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.music {
+  max-width: 300px;
+  margin: 30px auto;
+}
+
+iframe {
+  width: 100%;
+  height: 170px;
+  border: none;
+}
+  
+<style>
+/* all your existing CSS above */
+
+/* 📱 mobile fix */
+@media (max-width: 500px) {
+  p {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+}
+</style>
+  
+</head>
+
+<body>
+
+<div class="envelope" id="env" onclick="openLetter()">
+  <div class="base"></div>
+
+  <div class="flap">
+    <div class="heart">❤</div>
+  </div>
+
+  <div class="bottom"></div>
+</div>
+
+<div id="letter" class="letter">
+
+  <h1>From Satya</h1>
+
+  <p>
+    For Jefford <br><br>
+    JEPROOXXX. ML NAAA. HAHAHHA, pre! salamat. salamat sa pagsakay sa mga trip ko,
+    salamat sa mga tawanan, salamat sa mga memories, salamat sa pagkakaibigan.
+    sasabihin ko sanang mamimiss kita e kaso alam ko nmng makakapasa tayo sa ppc. IN GOD'S WILL!
+    kaya natin to pre, kampante akong magiging masaya at safe ang college life ko dahil kasama kita.
+    isa ka sa aking kuya-kuyahan... sana in the future ay maging succesful ka, at lagi kitang susuportahan.
+    pangarap kong maging partners tayo after ng college pero kung magkaiba man ang tatahakin natin ay maaasahan mong
+    lagi akong nakahandang tumulong sayo kung kailangan mo man.
+    i hope that this friendship of ours will continue and wont end.
+    mahal kita brother!<br>
+  </p>
+
+  <img src="FOR JEFFORD.jpg">
+
+  <p>
+    no matter where life takes us,<br>
+    i’ll always remember you 🤍
+  </p>
+
+  <div class="music">
+   <iframe 
+  src="https://open.spotify.com/embed/track/1ZUKSCTqNX5mfkns4jHXyb?si=3ee0cd53d59f42db" 
+  width="100%" 
+  height="152" 
+  frameborder="0" 
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+  </div>
+
+</div>
+
+<script>
+/* 💖 floating hearts */
+function createHearts() {
+  let heart = document.createElement("div");
+  heart.innerHTML = "♥";
+  heart.className = "heart-float";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHearts, 400);
+
+/* 💌 open */
+function openLetter() {
+  let env = document.getElementById("env");
+  env.classList.add("open");
+
+  setTimeout(() => {
+    env.classList.add("hide");
+  }, 900);
+
+  setTimeout(() => {
+    document.getElementById("letter").classList.add("show");
+  }, 1300);
+}
+</script>
+
+</body>
+</html>
